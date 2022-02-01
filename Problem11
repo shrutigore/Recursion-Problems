@@ -1,0 +1,78 @@
+// Sort an array A using Merge Sort.
+//Change in the input array itself. So no need to return or print anything.
+import java.util.Scanner;
+
+public class runner {
+	public static int[] takeInput() {
+		Scanner s = new Scanner(System.in);
+		int size = s.nextInt();
+		int arr[] = new int[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = s.nextInt();
+		}
+		return arr;
+	}
+	
+	public static void printArray(int input[]) {
+		for(int i = 0; i < input.length; i++) {
+			System.out.print(input[i] + " ");
+		}
+	}
+	
+	public static void main(String[] args) {
+		int[] input = takeInput();
+		solution.mergeSort(input);
+		printArray(input);
+	}
+}
+public class solution {
+
+	public static void mergeSort(int[] input){
+        mergeInPlace(input, 0, input.length);
+    }
+public static void mergeInPlace(int[] arr, int s, int e){
+    if ((e-s) == 1){
+        return ;
+    }
+    int mid = (s+e) / 2;
+     mergeInPlace(arr,s, mid);
+     mergeInPlace(arr,mid,e);
+
+     mergeInPlace(arr, s, mid, e);
+}
+
+    private static void mergeInPlace(int[] arr, int s, int m, int e) {
+        int[] mix = new int[e-s];
+
+        int i=s;  //element of first array
+        int j=m;  //element of second array
+        int k=0;  //element of mix array
+
+        while(i< m && j< e){
+            if (arr[i] < arr[j]){
+                mix[k]=arr[i];
+                i++;
+            }else {
+                mix[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+        // it may be possible that one of the arrays is not completely copied
+
+        while (i< m){
+            mix[k] = arr[i];
+            i++;
+            k++;
+        }
+        while (j< e){
+            mix[k] = arr[j];
+            j++;
+            k++;
+        }
+        for (int l=0; l< mix.length; l++){
+            arr[s+l]=mix[l];
+        }
+    }
+}
+
