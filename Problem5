@@ -1,0 +1,29 @@
+/* Given an array of length N and an integer x, you need to find if x is present in the array or not. Return true or false.
+Do this recursively.
+*/
+import java.util.Scanner;
+
+public class Runner {
+
+	static Scanner s = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int n = s.nextInt();
+		int input[] = new int[n];
+		for(int i = 0; i < n; i++) {
+			input[i] = s.nextInt();
+		}
+		int x = s.nextInt();
+		System.out.println(Solution.checkNumber(input, x));
+	}
+}
+    public class Solution{
+        public static boolean checkNumber(int[] arr, int target){
+            return checkNumber(arr, target, 0);
+        }
+        static boolean checkNumber(int[] arr, int target, int index){
+        if (index==arr.length){
+            return false;
+        }
+        return arr[index]==target || checkNumber(arr,target,index+1);   }
+    }
